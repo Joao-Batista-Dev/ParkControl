@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,9 +120,68 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/' 
+STATICFILES_DIR = [BASE_DIR / 'static'] # informando pasta dos arquivos static
+STATIC_ROOT = BASE_DIR / 'staticfiles' # arquivos staticos que o proprio django usar /
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Parking Service",
+
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "Parking Service",
+
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "Parking Service",
+
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    "site_logo": "images/logo.png",
+
+    # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
+    "login_logo": "images/logo.png",
+
+    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
+    "site_icon": "images/icon.png",
+
+    # Welcome text on the login screen
+    "welcome_sign": "Bem-vindo ao Parking Service",
+
+    # Copyright on the footer
+    "copyright": "CodeSync LTDA",
+
+    # Whether to display the side menu
+    "show_sidebar": True,
+
+    # Whether to aut expand the menu
+    "navigation_expanded": True,
+
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+
+        "customers.Customer": "fa-solid fa-wallet",
+        # inserir icons - nome do app nome do models
+        "vehicles.Vehicle": "fa-solid fa-car",
+        "parking.ParkingRecord": "fa-solid fa-square-parking",
+        "parking.ParkingSpot": "fa-solid fa-boxes-packing",
+        "vehicles.VehicleType": "fa-solid fa-car-side",
+    },
+    # Icons that are used when one is not manually specified
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+
+    "show_ui_builder": False,
+}
+
+
+
+
+
+
