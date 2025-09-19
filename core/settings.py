@@ -195,6 +195,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated', # para protegemos a nossa rotas - para nao deixamos ela publica
     ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'dj_rql.drf.RQLFilterBackend' # para filtros com Django RQL
+    ],
 }
 
 
