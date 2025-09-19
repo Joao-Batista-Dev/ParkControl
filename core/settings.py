@@ -41,13 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'drf_spectacular',
+    'rest_framework',
+    'rest_framework_simplejwt',
+
     'authentication',
     'customers',
     'vehicles',
     'parking',
-
-    'rest_framework',
-    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -86,8 +87,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # nome do banco que vamos utilizar que e o postgresql
+        'NAME': 'parking_service', # nome do nosso servico do docker
+        'USER': 'postgres', # nome do usuario do banco 
+        'PASSWORD': 'postgres', # senha do banco 
+        'HOST': 'parking_db', # nome do host que vamos utilizar e o nome do nosso servico do banco de dados do docker - para utilizar o db do container
+        'POST': '5432', # a porta que e a padrao
     }
 }
 
@@ -138,13 +143,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "Parking Service",
+    "site_title": "ParkControl",
 
     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_header": "Parking Service",
+    "site_header": "ParkControl",
 
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_brand": "Parking Service",
+    "site_brand": "ParkControl",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
     "site_logo": "images/logo.png",
@@ -156,7 +161,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": "images/icon.png",
 
     # Welcome text on the login screen
-    "welcome_sign": "Bem-vindo ao Parking Service",
+    "welcome_sign": "Bem-vindo ao ParkControl",
 
     # Copyright on the footer
     "copyright": "CodeSync LTDA",
@@ -196,10 +201,17 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated', # para protegemos a nossa rotas - para nao deixamos ela publica
     ],
     'DEFAULT_FILTER_BACKENDS': [
-        'dj_rql.drf.RQLFilterBackend' # para filtros com Django RQL
+        'dj_rql.drf.RQLFilterBackend', # para filtros com Django RQL
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'ParkControl API',
+    'DESCRIPTION': 'API do sistema de estacionamento do ParkControl',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=2),
