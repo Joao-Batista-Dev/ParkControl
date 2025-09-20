@@ -1,0 +1,7 @@
+# Ignorar ambiente virtual
+venv/* linguist-vendored
+.venv/* linguist-vendored
+env/* linguist-vendored
+
+# Ignorar dependências de JS/Node que não fazem parte do código principal
+*.js linguist-vendored
