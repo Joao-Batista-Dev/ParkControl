@@ -217,3 +217,14 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=2),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
+
+
+CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672//' # configurando o broke do nosso celery, conexão do rabbitmq com celery - essa conexão e feita com o nome do nosso servico do docker-compose
+
+
+
+
+
+
+
+

@@ -6,3 +6,7 @@ class VehiclesConfig(AppConfig):
     name = 'vehicles'
     verbose_name = 'Veículo'
     verbose_name_plural = 'Veículos'
+    
+    # para ativar o nosso signal
+    def ready(self):
+        import vehicles.signals
