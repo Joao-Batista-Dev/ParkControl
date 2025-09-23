@@ -67,7 +67,7 @@ Após isso, o sistema estará pronto para ser acessado em:
     "username": "",
     "password": ""
 }
-``
+```
 
 ### Todos os Endpoints precisam de autenticação, adicione o Token no Header da requisição
 ```json
