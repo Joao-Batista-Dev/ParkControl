@@ -23,6 +23,16 @@ Certifique-se de que você tenha os seguintes requisitos instalados em seu siste
 
 ## Instalação das Dependências
 
+Git clone:
+```bash
+https://github.com/Joao-Batista-Dev/ParkControl
+```
+
+Entre no diretório do projeto
+```bash
+cd parkcontrol
+```
+
 Crie e ative um ambiente virtual
 ```bash
 python3 -m venv venv
@@ -36,16 +46,6 @@ pip install -r requirements.txt
 ```
 
 ## Rodar o projeto
-
-Git clone:
-```bash
-https://github.com/Joao-Batista-Dev/ParkControl
-```
-
-Entre no diretório do projeto
-```bash
-cd parkcontrol
-```
 
 Execute o docker:
 ```bash
