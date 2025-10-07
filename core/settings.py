@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,11 +92,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # nome do banco que vamos utilizar que e o postgresql
-        'NAME': 'parking_service', # nome do nosso servico do docker
-        'USER': 'postgres', # nome do usuario do banco 
-        'PASSWORD': 'postgres', # senha do banco 
-        'HOST': 'parking_db', # nome do host que vamos utilizar e o nome do nosso servico do banco de dados do docker - para utilizar o db do container
-        'POST': '5432', # a porta que e a padrao
+        'NAME': os.environ.get('POSTGRES_DBNAME'), # nome do nosso servico do docker
+        'USER': os.environ.get('POSTGRES_USERNAME'), # nome do usuario do banco 
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'), # senha do banco 
+        'HOST': os.environ.get('POSTGRES_HOST'), # nome do host que vamos utilizar e o nome do nosso servico do banco de dados do docker - para utilizar o db do container
+        'POST': os.environ.get('POSTGRES_POST'), # a porta que e a padrao
     }
 }
 
@@ -219,7 +223,7 @@ SIMPLE_JWT = {
 }
 
 
-CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq:5672//' # configurando o broke do nosso celery, conexão do rabbitmq com celery - essa conexão e feita com o nome do nosso servico do docker-compose
+CELERY_BROKER_URL = os.environ.get('CELERY_HOST') # configurando o broke do nosso celery, conexão do rabbitmq com celery - essa conexão e feita com o nome do nosso servico do docker-compose
 
 
 
